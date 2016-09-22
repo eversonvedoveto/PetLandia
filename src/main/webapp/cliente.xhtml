@@ -1,0 +1,106 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head></h:head>
+<h:body>
+	<div align="center">
+		<h:form id="formPrincipal">
+
+
+			<p:dataTable var="cliente" value="#{clienteMB.clientes}"
+				id="tabelaclientes" style="width:70%">
+				<f:facet name="header">Lista de clientes Cadastradas</f:facet>
+
+				<p:column headerText="Nome">
+
+					<h:outputText value="#{cliente.nome}" />
+				</p:column>
+				
+				<p:column headerText="Telefone">
+
+					<h:outputText value="#{cliente.telefone}" />
+				</p:column>
+				
+				<p:column headerText="Caẽs">
+
+					<h:outputText value="#{cliente.caes}" />
+				</p:column>
+				
+				<p:column headerText="Ações">
+					<p:commandLink title="Alterar" update=":formAlterar:Alterar"
+						oncomplete="dialogAlterar.show()" immediate="true">
+						<p:graphicImage value="imagens/icon-edit.png" />
+						<f:setPropertyActionListener target="#{clienteMB.cliente}"
+							value="#{cliente}" />
+					</p:commandLink>
+					<p:commandLink title="Excluir" update=":formExcluir:Excluir"
+						oncomplete="confirmation.show()" immediate="true">
+						<p:graphicImage value="imagens/icon-del.png" />
+						<f:setPropertyActionListener target="#{clienteMB.cliente}"
+							value="#{cliente}" />
+					</p:commandLink>
+				</p:column>
+
+			</p:dataTable>
+
+			<p:commandButton value="Cadastrar" id="cadastrar"
+				oncomplete="dialogCadastrar.show()" />
+		</h:form>
+	</div>
+	
+	<h:form id="formAlterar">
+		<p:dialog header="Alterar" widgetVar="dialogAlterar" modal="true"
+			id="Alterar">
+			<p:panelGrid id="panelAlterar" columns="2">
+				<h:outputText value="Nome:" />
+				<p:inputText value="#{clienteMB.cliente.nome}" />
+				<h:outputText value="Telefone:" />
+				<p:inputText value="#{clienteMB.cliente.telefone}" />
+				<h:outputText value="Caẽs:" />
+				<p:inputText value="#{clienteMB.cliente.caes}" />
+			</p:panelGrid>
+			<p:commandButton value="Alterar"
+				actionListener="#{clienteMB.alterar}"
+				update=":formPrincipal:tabelaclientes"
+				oncomplete="dialogAlterar.hide()" />
+		</p:dialog>
+	</h:form>
+
+	<h:form id="formCadastrar">
+		<p:dialog header="Cadastrar" widgetVar="dialogCadastrar" modal="true">
+			<p:panelGrid id="panelCadastrar" columns="2">
+				<h:outputText value="Nome:" />
+				<p:inputText value="#{clienteMB.cliente.nome}" />
+				<h:outputText value="Telefone:" />
+				<p:inputText value="#{clienteMB.cliente.telefone}" />
+				<h:outputText value="Caẽs:" />
+				<p:inputText value="#{clienteMB.cliente.caes}" />
+				
+			</p:panelGrid>
+			<p:commandButton value="Cadastrar"
+				actionListener="#{clienteMB.cadastrar}"
+				update=":formPrincipal:tabelaclientes"
+				oncomplete="dialogCadastrar.hide()" />
+		</p:dialog>
+	</h:form>
+	<h:form id="formExcluir">
+		<p:confirmDialog id="Excluir"
+			message="Você gostaria de Deletar o #{clienteMB.cliente.nome}?"
+			header="Excluir" severity="alert" widgetVar="confirmation">
+
+			<p:commandButton id="confirm" value="Sim"
+				oncomplete="confirmation.hide()"
+				actionListener="#{clienteMB.excluir}"
+				update=":formPrincipal:tabelaclientes" />
+			<p:commandButton id="decline" value="Não"
+				onclick="confirmation.hide()" type="button" />
+
+		</p:confirmDialog>
+	</h:form>
+
+</h:body>
+</html>
