@@ -1,4 +1,4 @@
-package com.eversontcc.model;
+package com.everson.model;
 
 import java.io.Serializable;
 import javax.persistence.Entity;

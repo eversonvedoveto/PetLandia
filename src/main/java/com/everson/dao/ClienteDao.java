@@ -1,11 +1,11 @@
-package com.eversontcc.dao;
+package com.everson.dao;
 
 import java.util.ArrayList;
 import java.util.List;
 import org.hibernate.Session;
 
-import com.eversontcc.model.Cliente;
-import com.eversontcc.utils.NovoHibernateUtil;
+import com.everson.model.Cliente;
+import com.everson.utils.NovoHibernateUtil;
 
 public class ClienteDao {
 

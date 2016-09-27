@@ -1,6 +1,6 @@
 import javax.persistence.Persistence;
 
-import com.eversontcc.model.Cliente;
+import com.everson.model.Cliente;
 
 
 

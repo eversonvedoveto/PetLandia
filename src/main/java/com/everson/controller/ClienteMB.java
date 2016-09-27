@@ -1,4 +1,4 @@
-package com.eversontcc.controller;
+package com.everson.controller;
  
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -7,8 +7,8 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.event.ActionEvent;
 
-import com.eversontcc.dao.ClienteDao;
-import com.eversontcc.model.Cliente;
+import com.everson.dao.ClienteDao;
+import com.everson.model.Cliente;
  
 
  
