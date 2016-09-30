@@ -7,10 +7,11 @@ import org.hibernate.Session;
 import com.everson.model.Cliente;
 import com.everson.utils.NovoHibernateUtil;
 
-public class ClienteDao {
+public class ClienteDao implements ClienteDaoInterface{
 
 	private Session session;
 
+        @Override
 	public void inserir(Cliente cliente) {
 		session = NovoHibernateUtil.getSessionFactory().openSession();
 
@@ -25,6 +26,7 @@ public class ClienteDao {
 		}
 	}
 
+        @Override
 	public void alterar(Cliente cliente) {
 		session = NovoHibernateUtil.getSessionFactory().openSession();
 
@@ -39,6 +41,7 @@ public class ClienteDao {
 		}
 	}
 
+        @Override
 	public void excluir(Cliente cliente) {
 		
 
